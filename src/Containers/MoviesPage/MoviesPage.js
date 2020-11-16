@@ -29,7 +29,6 @@ class MoviesPage extends Component {
     e.preventDefault();
     this.appendSearchToUrl();
     this.searchMovies(this.state.search);
-    this.cleanSearchInput();
   }
 
   searchMovies = async (term) => {
@@ -52,9 +51,7 @@ class MoviesPage extends Component {
     this.props.history.push(`?search=${this.state.search}`);
   }
 
-  cleanSearchInput = () => {
-    this.setState({ search: '' });
-  }
+
 
   getSearchParamFromUrl = () => {
     return new URLSearchParams(window.location.search).get('search');
@@ -86,7 +83,11 @@ class MoviesPage extends Component {
         {!loader && !error && <>
           <ul className={styles.searchList}>
             {resultSearch.map(movie => (<li key={movie.id}>
-              <NavLink to={`/movies/${movie.id}`}>
+              <NavLink to={{
+                pathname: `/movies/${movie.id}`,
+                query: search,
+                from: this.props.location.pathname
+              }}>
                 {movie.original_title}
               </NavLink>
             </li>

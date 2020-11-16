@@ -3,22 +3,29 @@ import { useHistory } from 'react-router-dom'
 
 import styles from './CardMovie.module.css';
 
-const CardMovie = ({ movieDetails }) => {
-  const { title, vote_average, overview, genres, poster_path } = movieDetails;
+const CardMovie = ({ state }) => {
+  const { title, vote_average, overview, genres, poster_path } = state.movieDetails;
   const history = useHistory();
 
+  const goMovie = () => history.push({
+    pathname: state.from,
+    query: state.query,
+    search: `search=${state.query} `
+  })
+
+  const goHome = () => history.push("/")
   return (
     <div className={styles.wrapperCardMovie}>
       <button
         type="button"
         className={styles.btnGoBack}
-        onClick={history.goBack}
+        onClick={() => state.from ? goMovie() : goHome()}
       >
         Go back
       </button>
       <div className={styles.posterMovie}>
         {poster_path && <img src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-          alt={`Photo:${movieDetails.title}`}
+          alt={`Photo:${state.movieDetails.title}`}
           width="250"
         />}
       </div>

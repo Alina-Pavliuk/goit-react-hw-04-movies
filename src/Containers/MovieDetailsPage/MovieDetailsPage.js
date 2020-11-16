@@ -14,19 +14,28 @@ class MovieDetailsPage extends Component {
   state = {
     movieDetails: {},
     loader: true,
-    error: false
+    error: false,
+    query: "",
+    from: ""
   }
 
   componentDidMount() {
+    this.setState({ query: this.props.location.query });
+    this.setState({ from: this.props.location.from });
     this.getMovieDetails();
+    console.log(this.props);
+    console.log(this.state);
   }
 
   getMovieDetails = async () => {
-    const { match } = this.props;
+    const { match, location } = this.props;
     const url = withCredentials(`https://api.themoviedb.org/3/movie/${match.params.movieId}?language=en-US&api_key=`);
     try {
       const movieDetails = await request('get', url);
+      console.log(location.query);
       this.setState({ movieDetails });
+
+
       this.loaderToggle(false);
     } catch (error) {
       this.errorToggle(true);
@@ -57,7 +66,7 @@ class MovieDetailsPage extends Component {
 
     return (
       <div>
-        <CardMovie movieDetails={movieDetails} />
+        <CardMovie state={this.state} />
         <hr />
         <AdditionalInfo movieDetails={movieDetails} />
         <hr />
