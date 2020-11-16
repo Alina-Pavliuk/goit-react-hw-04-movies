@@ -1,0 +1,31 @@
+.castList {
+  list-style: none;
+  display: flex;
+  padding: 15px;
+  flex-wrap: wrap;
+}
+
+.castList__item {
+display: block;
+border: 1px solid black;
+padding: 10px;
+text-align: center;
+margin: 0 10px 10px 0;
+max-width: 110px;
+}
+
+.actorName {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.spanCharacter {
+  display: block;
+  font-weight: 300;
+  font-style: italic;
+  color: darkblue;
+}
+
+.actorCharacter {
+  font-weight: 400;
+}

@@ -1,0 +1,19 @@
+.wrapperCardMovie {
+ padding-left: 30px;
+}
+.genres {
+  display: block;
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.btnGoBack {
+  padding: 10px;
+  border-radius: 100%;
+  margin: 10px 0 10px 0;
+
+}
+
+.genresContent {
+  margin: 0;
+}
